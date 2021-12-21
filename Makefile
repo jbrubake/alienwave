@@ -6,6 +6,10 @@ OBJS = main.o blit.o aliens.o xzarna.o fire.o shield.o levels.o util.o
 CFLAGS = -c -O2 -Wall
 LIB = -lncurses
 
+PREFIX = /usr/local
+BINDIR = $(PREFIX)/games
+DATADIR = $(PREFIX)/share/games/alienwave
+
 # Uncomment this if you want random waves
 # CFLAGS += -DRANDOM_LEVELS
 
@@ -40,4 +44,9 @@ clean:
 
 distclean: clean
 	rm -f alienwave
+
+install: alienwave
+	install alienwave -m 0750 -t $(BINDIR)
+	install -d $(DATADIR)
+	install STORY -m 0640 -t $(DATADIR)
 
